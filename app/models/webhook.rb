@@ -1,4 +1,6 @@
 class Webhook < ApplicationRecord
+  include BroadcastCallbacks
+
   # core webhook data cannot be modified once created
   attr_readonly :identifier, :url, :headers, :body
 

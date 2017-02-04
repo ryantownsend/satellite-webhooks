@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'securerandom'
 
 RSpec.describe 'Webhooks API v1', type: :api do
-  specify 'creating a webhook' do
+  specify 'creating a webhook should queue a worker to deliver the webhook' do
     record = TestModels::Webhook.create({
       identifier: SecureRandom.uuid,
       url: 'http://example.com/',
@@ -13,6 +13,7 @@ RSpec.describe 'Webhooks API v1', type: :api do
     aggregate_failures do
       expect(record).to be_persisted
       expect(record.errors).to be_empty
+      expect(WebhookDeliveryWorker.jobs.size).to eq(1)
     end
   end
 

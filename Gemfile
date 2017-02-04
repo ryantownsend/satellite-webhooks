@@ -16,6 +16,8 @@ gem 'jsonapi-resources', '0.9.0.beta3'
 gem 'sidekiq', '4.2.9'
 # HTTP Library
 gem 'typhoeus', '>= 1.1.2', '~> 1.1'
+# Internal Pubsub
+gem 'wisper', '2.0.0.rc1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

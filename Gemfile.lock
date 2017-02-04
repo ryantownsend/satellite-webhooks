@@ -166,6 +166,7 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    wisper (2.0.0.rc1)
 
 PLATFORMS
   ruby
@@ -183,6 +184,7 @@ DEPENDENCIES
   typhoeus (~> 1.1, >= 1.1.2)
   tzinfo-data
   webmock (~> 2.3, >= 2.3.2)
+  wisper (= 2.0.0.rc1)
 
 BUNDLED WITH
    1.14.3
