@@ -16,6 +16,27 @@ RSpec.describe 'Webhooks API v1', type: :api do
     end
   end
 
+  specify 'creating a webhook should be idempotent' do
+    attrs = {
+      identifier: SecureRandom.uuid,
+      url: 'http://example.com/',
+      headers: { 'Content-Type': 'text/plain' },
+      body: 'Some plain text'
+    }
+
+    record_a = TestModels::Webhook.create(attrs)
+    record_b = TestModels::Webhook.create(attrs)
+
+    aggregate_failures do
+      expect(record_a).to be_persisted
+      expect(record_a.errors).to be_empty
+      expect(record_b).to be_persisted
+      expect(record_b.errors).to be_empty
+    end
+
+    expect(record_b.id).to eq(record_a.id)
+  end
+
   specify 'reading a webhook after creation' do
     record = TestModels::Webhook.create({
       identifier: SecureRandom.uuid,
