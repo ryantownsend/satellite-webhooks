@@ -1,0 +1,47 @@
+{
+  "name": "Satellite Webhooks",
+  "description": "Receives webhook payloads and queues them for remote delivery",
+  "keywords": [
+    "webhooks",
+    "rails",
+    "sidekiq"
+  ],
+  "website": "https://github.com/ryantownsend/satellite-webhooks",
+  "repository": "https://github.com/ryantownsend/satellite-webhooks",
+  "logo": "https://raw.githubusercontent.com/ryantownsend/satellite-webhooks/master/docs/logo.png",
+  "scripts": {
+    "postdeploy": "bundle exec rake db:schema:load"
+  },
+  "env": {
+    "SECRET_TOKEN": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "WEB_CONCURRENCY": {
+      "description": "The number of Puma processes to run.",
+      "value": "2"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "hobby"
+    },
+    "worker": {
+      "quantity": 1,
+      "size": "hobby"
+    }
+  },
+  "image": "heroku/ruby",
+  "addons": [
+    {
+      "plan": "heroku-redis"
+    },
+    {
+      "plan": "heroku-postgresql",
+      "options": {
+        "version": "9.6"
+      }
+    }
+  ]
+}
