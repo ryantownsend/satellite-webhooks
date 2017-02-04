@@ -1,0 +1,3 @@
+#!/bin/bash
+./bin/docker/rake db:migrate
+bundle exec rspec

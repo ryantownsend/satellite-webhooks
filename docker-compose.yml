@@ -1,0 +1,52 @@
+version: '2'
+
+services:
+  web:
+    build: .
+    command: ./bin/docker/rails s -b 0.0.0.0
+    volumes:
+      - .:/app
+      - rubygems_cache:/rubygems
+    ports:
+      - '3000:3000'
+    environment: &default_environment
+      GEM_HOME: '/rubygems'
+      BUNDLE_PATH: '/rubygems'
+      DATABASE_URL: 'postgres://postgres:@postgres:5432'
+      REDIS_URL: 'redis://redis:6379'
+    depends_on:
+      - postgres
+      - redis
+    # needed for Codeship Pro:
+    links:
+      - postgres
+      - redis
+
+  worker:
+    build: .
+    command: bundle exec sidekiq -c 4
+    volumes:
+      - .:/app
+      - rubygems_cache:/rubygems
+    environment:
+      <<: *default_environment
+    depends_on:
+      - postgres
+      - redis
+      - web
+
+  postgres:
+    image: postgres:9.6
+    ports:
+      - '5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+  redis:
+    image: redis:3.2
+    ports:
+      - '6379'
+
+volumes:
+  postgres_data:
+  rubygems_cache:

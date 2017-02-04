@@ -1,0 +1,15 @@
+#!/bin/bash
+bundle check || {
+  echo "Installing gems..."
+  {
+    bundle install --jobs 4 --retry 5 --quiet && echo "Installed gems."
+  } || {
+    echo "Gem installation failed."
+    exit 1
+  }
+}
+
+# remove any old PIDs
+rm -f "tmp/pids/*"
+
+exec "$@"
