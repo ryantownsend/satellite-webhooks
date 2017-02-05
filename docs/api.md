@@ -1,6 +1,6 @@
-The HTTP interface for this application is a [JSONAPI](http://jsonapi.org/)-compliant RESTful API. You should use a compliant client, such as [jsonapi-resources](https://github.com/cerebris/jsonapi-resources) to make integration as simple as possible.
+The HTTP interface for this application is a [JSONAPI](http://jsonapi.org/)-compliant RESTful API. You should use a compliant client, such as [json_api_client](https://github.com/chingor13/json_api_client) to make integration as simple as possible.
 
-Currently, only a single resource exists: webhooks.
+Currently, there is no security and only a single resource exists: webhooks.
 
 ### Webhooks
 
