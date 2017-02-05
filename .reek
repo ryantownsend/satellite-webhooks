@@ -3,13 +3,17 @@
 IrresponsibleModule:
   enabled: false
 
-TooManyStatements:
+LongParameterList:
   enabled: true
   exclude:
   - initialize
-  - "self.call"
+  - 'self.call'
   max_statements: 5
 
 "app/workers":
   UtilityFunction:
     enabled: false
+
+exclude_paths:
+  - db
+  - spec
