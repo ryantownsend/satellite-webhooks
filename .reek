@@ -2,3 +2,14 @@
 
 IrresponsibleModule:
   enabled: false
+
+TooManyStatements:
+  enabled: true
+  exclude:
+  - initialize
+  - self.call
+  max_statements: 5
+
+"app/workers":
+  UtilityFunction:
+    enabled: false
