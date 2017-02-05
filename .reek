@@ -7,7 +7,7 @@ TooManyStatements:
   enabled: true
   exclude:
   - initialize
-  - self.call
+  - "self.call"
   max_statements: 5
 
 "app/workers":
