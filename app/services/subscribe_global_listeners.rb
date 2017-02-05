@@ -5,7 +5,7 @@ class SubscribeGlobalListeners
     Wisper.subscribe(WebhookCreationListener, &block)
   end
 
-  def self.around(controller, &block)
+  def self.around(_controller, &block)
     call(&block)
   end
 end
