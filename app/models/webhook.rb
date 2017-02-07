@@ -1,4 +1,7 @@
 class Webhook < ApplicationRecord
+  # associations
+  has_many :deliveries
+
   # core webhook data cannot be modified once created
   attr_readonly :identifier, :url, :headers, :body
 
