@@ -6,7 +6,7 @@ class Webhook < ApplicationRecord
   attr_readonly :identifier, :url, :headers, :body
 
   # validation
-  validates :identifier, :url, :body, presence: true
+  validates :identifier, :url, presence: true
 
   # override save to allow for idempotent save
   def save(*)

@@ -11,7 +11,14 @@ module RecordWebhook
       delivery.response_headers     = response.headers
       delivery.response_body        = response.body
       delivery.status               = 'delivered'
+
+      if response.timed_out?
+        delivery.status = 'timed_out'
+      end
     end
+
+  rescue Net::OpenTimeout, Net::ReadTimeout => ex
+    delivery.status = 'errored'
 
   # we should always save, even if an exception occured
   ensure
