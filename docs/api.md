@@ -1,6 +1,6 @@
 The HTTP interface for this application is a [JSONAPI](http://jsonapi.org/)-compliant RESTful API. You should use a compliant client, such as [json_api_client](https://github.com/chingor13/json_api_client) to make integration as simple as possible.
 
-Currently, there is no security and only a single resource exists: webhooks.
+Currently, there is no security and only a two resources exist: webhooks and deliveries.
 
 ### Webhooks
 
@@ -50,3 +50,37 @@ Deliveries are attempted 3 times before the background queue will give up.
   }
 }
 ```
+
+### Deliveries
+
+Note: deliveries are read-only, you cannot even create them as the resource is designed to simply report on the status of webhook delivery attempts made from the background queues.
+
+#### Example Object
+
+```json
+{
+  "id": 1,
+  "type": "deliveries",
+  "attributes": {
+    "status": "delivered",
+    "response_time_ms": 103,
+    "response_status_code": 200,
+    "response_headers": {
+      "Content-Type": "text/plain"
+    },
+    "response_body": "Success!"
+  }
+}
+```
+
+#### Index
+
+`GET /api/v1/webhooks/:webhook_id/deliveries`
+
+This index provides a list of all deliveries for the given webhook's id.
+
+#### Show
+
+`GET /api/v1/webhooks/:webhook_id/deliveries/:id`
+
+This view will return the attributes of a single delivery.
