@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209210923) do
+ActiveRecord::Schema.define(version: 20170209215133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20170209210923) do
     t.datetime "updated_at",                       null: false
     t.string   "basic_auth_username"
     t.string   "basic_auth_password"
+    t.integer  "retry_limit",         default: 3,  null: false
     t.index ["identifier"], name: "index_webhooks_on_identifier", unique: true, using: :btree
     t.index ["url"], name: "index_webhooks_on_url", using: :btree
   end

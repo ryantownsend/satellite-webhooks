@@ -3,10 +3,16 @@ class Webhook < ApplicationRecord
   has_many :deliveries
 
   # core webhook data cannot be modified once created
-  attr_readonly :identifier, :url, :headers, :body
+  attr_readonly :identifier, :url, :headers, :body, :retry_limit
 
   # validation
   validates :identifier, :url, presence: true
+
+  validates :retry_limit, numericality: {
+    greater_than_or_equal_to: 0,
+    less_than_or_equal_to: 10,
+    allow_blank: false
+  }
 
   # override save to allow for idempotent save
   def save(*)
