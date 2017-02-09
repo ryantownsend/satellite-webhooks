@@ -21,7 +21,9 @@ class WebhookDeliveryWorker
     response.success? || retry_count >= webhook.retry_limit
   end
 
-  attr_writer :retry_count
+  def retry_count=(value)
+    @retry_count = value
+  end
 
   def retry_count
     (@retry_count || -1) + 1

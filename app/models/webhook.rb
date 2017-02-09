@@ -3,7 +3,7 @@ class Webhook < ApplicationRecord
   has_many :deliveries
 
   # core webhook data cannot be modified once created
-  attr_readonly :identifier, :url, :headers, :body, :retry_limit
+  attr_readonly :identifier, :url, :headers, :body
 
   # validation
   validates :identifier, :url, presence: true

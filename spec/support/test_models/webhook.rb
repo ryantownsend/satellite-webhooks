@@ -7,6 +7,7 @@ module TestModels
     property :headers
     property :body
     property :auth
+    property :retry_limit
 
     # associations
     has_many :deliveries
