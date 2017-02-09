@@ -45,7 +45,11 @@ Deliveries are attempted 3 times before the background queue will give up.
       "headers": {
         "Content-Type": "application/json"
       },
-      "body": "{\"key\":\"value\"}"
+      "body": "{\"key\":\"value\"}",
+      "auth": {
+        "username": "testuser001",
+        "password": "arandompassword"
+      }
     }
   }
 }
