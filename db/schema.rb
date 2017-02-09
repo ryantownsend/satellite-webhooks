@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206200008) do
+ActiveRecord::Schema.define(version: 20170209210923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,12 +28,14 @@ ActiveRecord::Schema.define(version: 20170206200008) do
   end
 
   create_table "webhooks", force: :cascade do |t|
-    t.uuid     "identifier",              null: false
-    t.string   "url",                     null: false
-    t.jsonb    "headers",    default: {}, null: false
-    t.text     "body",                    null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.uuid     "identifier",                       null: false
+    t.string   "url",                              null: false
+    t.jsonb    "headers",             default: {}, null: false
+    t.text     "body",                             null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "basic_auth_username"
+    t.string   "basic_auth_password"
     t.index ["identifier"], name: "index_webhooks_on_identifier", unique: true, using: :btree
     t.index ["url"], name: "index_webhooks_on_url", using: :btree
   end

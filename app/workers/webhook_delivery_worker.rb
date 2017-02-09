@@ -12,7 +12,9 @@ class WebhookDeliveryWorker
       delivery_service.call({
         url: webhook.url,
         headers: webhook.headers,
-        body: webhook.body
+        body: webhook.body,
+        username: webhook.basic_auth_username,
+        password: webhook.basic_auth_password
       })
     end
     # return true or false to requeue failures

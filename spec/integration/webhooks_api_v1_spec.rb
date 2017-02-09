@@ -38,6 +38,25 @@ RSpec.describe 'Webhooks API v1', type: :api do
     expect(record_b.id).to eq(record_a.id)
   end
 
+  specify 'creating a webhook should accept HTTP Basic Auth credentials' do
+    record = TestModels::Webhook.create({
+      identifier: SecureRandom.uuid,
+      url: 'http://example.com/',
+      headers: { 'Content-Type': 'text/plain' },
+      body: 'Some plain text',
+      auth: { username: 'test', password: 'password123' }
+    })
+
+    aggregate_failures do
+      expect(record).to be_persisted
+      expect(record.errors).to be_empty
+      expect(record.auth).to match({
+        username: 'test',
+        password: 'password123'
+      })
+    end
+  end
+
   specify 'reading a webhook after creation' do
     record = TestModels::Webhook.create({
       identifier: SecureRandom.uuid,
