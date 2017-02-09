@@ -1,6 +1,7 @@
 require 'typhoeus'
 
-class DeliverWebhook
+# this module performs the transmission of a HTTP call
+module DeliverWebhook
   def self.call(url:, headers:, body:, timeout: 5, username: nil, password: nil)
     # if we have HTTP Basic Auth username / password, pass them
     if username || password

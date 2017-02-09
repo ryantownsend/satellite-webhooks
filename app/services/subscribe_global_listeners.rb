@@ -1,6 +1,6 @@
 require 'wisper'
 
-class SubscribeGlobalListeners
+module SubscribeGlobalListeners
   def self.call(&block)
     Wisper.subscribe(WebhookCreationListener, &block)
   end

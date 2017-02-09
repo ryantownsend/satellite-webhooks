@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe WebhookDeliveryWorker do
   describe '#perform' do
     it 'should be deliver the webhook' do
-      response = double(:response, success?: true)
-      delivery_service = class_spy('DeliverWebhook', call: response)
+      stub_request(:post, 'example.com').
+        to_return(body: 'okay!', status: 200)
 
       record = Webhook.create({
         identifier: SecureRandom.uuid,
@@ -13,13 +13,13 @@ RSpec.describe WebhookDeliveryWorker do
         body: 'Some plain text'
       })
 
-      result = described_class.new.perform(record.id, delivery_service: delivery_service)
+      result = described_class.new.perform(record.id)
 
       aggregate_failures do
         # successful responses should return truthy
         expect(result).to be_truthy
-        # the delivery service should have been called
-        expect(delivery_service).to have_received(:call)
+        # there should be a recorded delivery
+        expect(record.deliveries.size).to eq(1)
       end
     end
   end

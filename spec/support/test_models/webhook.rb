@@ -6,5 +6,8 @@ module TestModels
     property :url
     property :headers
     property :body
+
+    # associations
+    has_many :deliveries
   end
 end

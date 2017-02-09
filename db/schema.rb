@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170204111716) do
+ActiveRecord::Schema.define(version: 20170206200008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "deliveries", force: :cascade do |t|
+    t.string   "status",               null: false
+    t.integer  "response_time_ms"
+    t.integer  "response_status_code"
+    t.jsonb    "response_headers"
+    t.text     "response_body"
+    t.integer  "webhook_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["webhook_id"], name: "index_deliveries_on_webhook_id", using: :btree
+  end
 
   create_table "webhooks", force: :cascade do |t|
     t.uuid     "identifier",              null: false
@@ -26,4 +38,5 @@ ActiveRecord::Schema.define(version: 20170204111716) do
     t.index ["url"], name: "index_webhooks_on_url", using: :btree
   end
 
+  add_foreign_key "deliveries", "webhooks"
 end
