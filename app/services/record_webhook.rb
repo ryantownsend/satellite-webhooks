@@ -6,15 +6,7 @@ module RecordWebhook
 
     # perform the request and record the response
     block.yield.tap do |response|
-      delivery.response_time_ms     = ((response.time || 0) * 1000).to_i
-      delivery.response_status_code = response.code
-      delivery.response_headers     = response.headers
-      delivery.response_body        = response.body
-      delivery.status               = 'delivered'
-
-      if response.timed_out?
-        delivery.status = 'timed_out'
-      end
+      record_response_into_delivery(response, delivery)
     end
 
   rescue Net::OpenTimeout, Net::ReadTimeout
@@ -23,5 +15,19 @@ module RecordWebhook
   # we should always save, even if an exception occured
   ensure
     delivery.save!
+  end
+
+  private
+
+  def self.record_response_into_delivery(response, delivery)
+    delivery.response_time_ms     = ((response.time || 0) * 1000).to_i
+    delivery.response_status_code = response.code
+    delivery.response_headers     = response.headers
+    delivery.response_body        = response.body
+    delivery.status               = 'delivered'
+
+    if response.timed_out?
+      delivery.status = 'timed_out'
+    end
   end
 end
