@@ -17,7 +17,7 @@ module RecordWebhook
       end
     end
 
-  rescue Net::OpenTimeout, Net::ReadTimeout => ex
+  rescue Net::OpenTimeout, Net::ReadTimeout
     delivery.status = 'errored'
 
   # we should always save, even if an exception occured
