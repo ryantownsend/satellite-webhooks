@@ -1,5 +1,3 @@
-puts "SIDEKIQ INITIALIZER"
-
 require 'sidekiq'
 
 class SidekiqRetryCountMiddleware
