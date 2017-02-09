@@ -17,9 +17,7 @@ module RecordWebhook
     delivery.save!
   end
 
-  private
-
-  def self.record_response_into_delivery(response, delivery)
+  private_class_method def self.record_response_into_delivery(response, delivery)
     delivery.response_time_ms     = ((response.time || 0) * 1000).to_i
     delivery.response_status_code = response.code
     delivery.response_headers     = response.headers
