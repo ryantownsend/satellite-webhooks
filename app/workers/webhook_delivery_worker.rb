@@ -19,7 +19,8 @@ class WebhookDeliveryWorker
         headers: webhook.headers,
         body: webhook.body,
         username: webhook.basic_auth_username,
-        password: webhook.basic_auth_password
+        password: webhook.basic_auth_password,
+        timeout: webhook.timeout
       })
     end
     # return true if successful or we've exhausted the retry limit

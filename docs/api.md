@@ -32,6 +32,9 @@ Deliveries are attempted 3 times before the background queue will give up.
 * `url` – string, required
 * `headers` – object (key-value pairs), optional
 * `body` – string, required
+* `auth` – object (`username` / `password` keys), optional
+* `retry_limit` – integer, optional, min: 0, max: 10, default: 3
+* `timeout` – integer, optional, min: 1, max: 60, default: 5
 
 ##### Example Body
 
@@ -50,7 +53,8 @@ Deliveries are attempted 3 times before the background queue will give up.
         "username": "testuser001",
         "password": "arandompassword"
       },
-      "retry_limit": 5
+      "retry_limit": 5,
+      "timeout": 5
     }
   }
 }
