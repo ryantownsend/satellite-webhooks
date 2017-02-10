@@ -8,6 +8,12 @@ class Webhook < ApplicationRecord
   # validation
   validates :identifier, :url, presence: true
 
+  validates :retry_limit, numericality: {
+    greater_than_or_equal_to: 0,
+    less_than_or_equal_to: 10,
+    allow_blank: false
+  }
+
   # override save to allow for idempotent save
   def save(*)
     # do not override updates

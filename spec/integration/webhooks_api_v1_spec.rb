@@ -7,7 +7,8 @@ RSpec.describe 'Webhooks API v1', type: :api do
       identifier: SecureRandom.uuid,
       url: 'http://example.com/',
       headers: { 'Content-Type': 'text/plain' },
-      body: 'Some plain text'
+      body: 'Some plain text',
+      retry_limit: 0
     })
 
     aggregate_failures do

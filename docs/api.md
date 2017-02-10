@@ -49,7 +49,8 @@ Deliveries are attempted 3 times before the background queue will give up.
       "auth": {
         "username": "testuser001",
         "password": "arandompassword"
-      }
+      },
+      "retry_limit": 5
     }
   }
 }

@@ -1,5 +1,5 @@
 class Api::V1::WebhookResource < JSONAPI::Resource
-  attributes :identifier, :url, :headers, :body, :auth
+  attributes :identifier, :url, :headers, :body, :auth, :retry_limit
 
   # associations
   has_many :deliveries
