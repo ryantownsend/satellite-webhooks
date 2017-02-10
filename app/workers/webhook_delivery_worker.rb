@@ -4,6 +4,11 @@ class WebhookDeliveryWorker
   include Sidekiq::Worker
   sidekiq_options queue: 'webhook_delivery', retry: 10, dead: false
 
+  def initialize(*)
+    super
+    @retry_count = -1
+  end
+
   def perform(webhook_id, delivery_service: DeliverWebhook, record_service: RecordWebhook)
     # load the record from the database
     webhook = Webhook.find(webhook_id)
@@ -26,6 +31,6 @@ class WebhookDeliveryWorker
   end
 
   def retry_count
-    (@retry_count || -1) + 1
+    @retry_count + 1
   end
 end
