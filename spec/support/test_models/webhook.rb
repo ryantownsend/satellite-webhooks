@@ -8,6 +8,7 @@ module TestModels
     property :body
     property :auth
     property :retry_limit
+    property :timeout
 
     # associations
     has_many :deliveries
