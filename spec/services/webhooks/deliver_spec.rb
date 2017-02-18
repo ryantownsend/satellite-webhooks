@@ -1,7 +1,7 @@
 require 'spec_helper'
-require './app/services/deliver_webhook'
+require './app/services/webhooks/deliver'
 
-RSpec.describe DeliverWebhook do
+RSpec.describe Webhooks::Deliver do
   it 'should make HTTP calls with the given options' do
     stub_request(:post, 'www.example.com').
       to_return(body: 'okay!', status: 200)

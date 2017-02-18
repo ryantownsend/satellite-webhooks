@@ -13,13 +13,17 @@
     "postdeploy": "bundle exec rake db:schema:load"
   },
   "env": {
-    "SECRET_TOKEN": {
-      "description": "A secret key for verifying the integrity of signed cookies.",
-      "generator": "secret"
-    },
     "WEB_CONCURRENCY": {
-      "description": "The number of Puma processes to run.",
+      "description": "The number of Puma web processes.",
       "value": "2"
+    },
+    "RAILS_MAX_THREADS": {
+      "description": "The number of web threads.",
+      "value": "5"
+    },
+    "SIDEKIQ_THREADS": {
+      "description": "The number of concurrent Sidekiq threads.",
+      "value": "5"
     }
   },
   "formation": {
