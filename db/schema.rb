@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216180612) do
+ActiveRecord::Schema.define(version: 20170218103954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20170216180612) do
     t.integer  "retry_limit",         default: 3,        null: false
     t.integer  "timeout",             default: 5,        null: false
     t.string   "status",              default: "queued", null: false
+    t.boolean  "proxy_enabled",       default: false,    null: false
+    t.string   "proxy_url"
     t.index ["identifier"], name: "index_webhooks_on_identifier", unique: true, using: :btree
     t.index ["url"], name: "index_webhooks_on_url", using: :btree
   end
