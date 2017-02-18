@@ -18,6 +18,13 @@ This index provides a list of all webhooks in the application.
 
 This view will return the attributes of a single webhook.
 
+Webhooks have a useful `status` attribute that will be one of the following:
+
+* `queued` - awaiting processing
+* `delivered` - successfully transmitted
+* `retrying` - failed transmission but queued for another attempt
+* `failed` - failed transmission and retry attempts have been exhausted
+
 #### Create
 
 `POST /api/v1/webhooks`
