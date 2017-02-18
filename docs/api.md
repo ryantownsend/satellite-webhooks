@@ -42,6 +42,7 @@ Deliveries are attempted 3 times before the background queue will give up.
 * `auth` – object (`username` / `password` keys), optional
 * `retry_limit` – integer, optional, min: 0, max: 10, default: 3
 * `timeout` – integer, optional, min: 1, max: 60, default: 5
+* `proxy` – boolean / url, optional, default: false
 
 ##### Example Body
 
