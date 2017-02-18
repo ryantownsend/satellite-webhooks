@@ -24,4 +24,9 @@ class Delivery < ApplicationRecord
   def readonly?
     persisted?
   end
+
+  # returns a boolean indicating whether the webhook was delivered
+  def successful?
+    'delivered' == status
+  end
 end

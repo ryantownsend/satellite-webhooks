@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'typhoeus'
 
-RSpec.describe RecordWebhook do
+RSpec.describe Webhooks::RecordTransmission do
   context 'with a successful response' do
     it 'should record a status of `delivered`', sidekiq_mode: :inline do
       # Prepare
