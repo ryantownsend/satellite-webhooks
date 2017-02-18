@@ -44,6 +44,8 @@ Deliveries are attempted 3 times before the background queue will give up.
 * `timeout` – integer, optional, min: 1, max: 60, default: 5
 * `proxy` – boolean / url, optional, default: false
 
+Note: if `proxy` is set to true, it will use the system HTTP Proxy, which will be loaded from `ENV['QUOTAGUARDSTATIC_URL']`, `ENV['FIXIE_URL']` (allowing you to simply install either addon via Heroku), or `ENV['HTTP_PROXY_URL']` if you wish to use something custom.
+
 ##### Example Body
 
 ```json
