@@ -10,11 +10,6 @@ class Api::V1::WebhookResource < JSONAPI::Resource
     super - [:status]
   end
 
-  # prevent setting of status
-  def self.updatable_fields(context)
-    super - [:status]
-  end
-
   def auth
     {
       username: _model.basic_auth_username,
