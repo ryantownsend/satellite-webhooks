@@ -10,6 +10,7 @@ module TestModels
     property :retry_limit
     property :timeout
     property :status
+    property :proxy
 
     # associations
     has_many :deliveries

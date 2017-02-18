@@ -14,14 +14,7 @@ class WebhookDeliveryWorker
     webhook = Webhook.find(webhook_id)
     # make the HTTP call
     response = record_service.call(webhook) do
-      delivery_service.call({
-        url: webhook.url,
-        headers: webhook.headers,
-        body: webhook.body,
-        username: webhook.basic_auth_username,
-        password: webhook.basic_auth_password,
-        timeout: webhook.timeout
-      })
+      delivery_service.call(webhook)
     end
     # return true if successful or we've exhausted the retry limit
     response.success? || retry_count >= webhook.retry_limit
