@@ -3,14 +3,14 @@ module Webhooks
     def self.call(webhook)
       deliveries = webhook.deliveries
 
-      if deliveries.any?(&:successful?)
+      if deliveries.empty?
+        'queued'
+      elsif deliveries.any?(&:successful?)
         'delivered'
       elsif deliveries.size >= webhook.retry_limit
         'failed'
-      elsif deliveries.size > 0
-        'retrying'
       else
-        'queued'
+        'retrying'
       end
     end
   end
