@@ -9,11 +9,12 @@ class WebhookDeliveryWorker
     @retry_count = -1
   end
 
-  def perform(webhook_id, delivery_service: Webhooks::Deliver, record_service: Webhooks::RecordTransmission)
+  def perform(webhook_id, delivery_service: Webhooks::Deliver, record_service: Webhooks::RecordTransmission, sign_service: Webhooks::Sign)
     # load the record from the database
     webhook = Webhook.find(webhook_id)
     # make the HTTP call
     response = record_service.call(webhook) do
+      sign_service.call(webhook)
       delivery_service.call(webhook)
     end
     # return true if successful or we've exhausted the retry limit
