@@ -31,7 +31,7 @@ Webhooks have a useful `status` attribute that will be one of the following:
 
 This endpoint allows you to submit a webhook to be queued for delivery. The endpoint is idempotent so if you submit a second webhook with the same `identifier` attribute, it will treat this as a duplicate record and return the original, without queuing a second delivery.
 
-Deliveries are attempted 3 times before the background queue will give up.
+Deliveries are attempted 3 times by default before the background queue will give up, though you can customise this by setting `attempt_limit`. You can also disable this by passing `0` as the value.
 
 ##### Attributes
 
