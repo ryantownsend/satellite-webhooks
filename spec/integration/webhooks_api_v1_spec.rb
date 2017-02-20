@@ -9,7 +9,12 @@ RSpec.describe 'Webhooks API v1', type: :api do
       headers: { 'Content-Type': 'text/plain' },
       body: 'Some plain text',
       retry_limit: 0,
-      timeout: 1
+      timeout: 1,
+      event_source: {
+        event: 'test',
+        object_id: 123,
+        object_type: 'Type'
+      }
     })
 
     aggregate_failures do
