@@ -8,7 +8,7 @@ RSpec.describe 'Webhooks API v1', type: :api do
       url: 'http://example.com/',
       headers: { 'Content-Type': 'text/plain' },
       body: 'Some plain text',
-      retry_limit: 0,
+      attempt_limit: 0,
       timeout: 1,
       event_source: {
         event: 'test',
