@@ -43,8 +43,11 @@ Deliveries are attempted 3 times before the background queue will give up.
 * `retry_limit` – integer, optional, min: 0, max: 10, default: 3
 * `timeout` – integer, optional, min: 1, max: 60, default: 5
 * `proxy` – boolean / url, optional, default: false
+* `signatures` - array of objects, optional, default: empty
 
 Note: if `proxy` is set to true, it will use the system HTTP Proxy, which will be loaded from `ENV['QUOTAGUARDSTATIC_URL']`, `ENV['FIXIE_URL']` (allowing you to simply install either addon via Heroku), or `ENV['HTTP_PROXY_URL']` if you wish to use something custom.
+
+Note 2: for the algorithm in `signatures`, the supported values are `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, `hmac-sha512`, `hmac-md5`.
 
 ##### Example Body
 
@@ -64,7 +67,14 @@ Note: if `proxy` is set to true, it will use the system HTTP Proxy, which will b
         "password": "arandompassword"
       },
       "retry_limit": 5,
-      "timeout": 5
+      "timeout": 5,
+      "signatures": [
+        {
+          "header": "X-Signature",
+          "shared_secret": "secret",
+          "algorithm": "hmac-sha1"
+        }
+      ]
     }
   }
 }
