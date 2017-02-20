@@ -42,6 +42,6 @@ class Webhook < ApplicationRecord
   end
 
   def can_retry?
-    attempt_count >= attempt_limit
+    attempt_count < attempt_limit
   end
 end

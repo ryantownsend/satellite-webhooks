@@ -23,4 +23,27 @@ RSpec.describe Webhook do
       expect(record_b.id).to eq(record_a.id)
     end
   end
+
+  describe '#can_retry?' do
+    context 'when the attempt count is less than the limit' do
+      it 'should return true' do
+        webhook = Webhook.new(attempt_count: 0, attempt_limit: 1)
+        expect(webhook.can_retry?).to eq(true)
+      end
+    end
+
+    context 'when the attempt count is equal to the limit' do
+      it 'should return false' do
+        webhook = Webhook.new(attempt_count: 1, attempt_limit: 1)
+        expect(webhook.can_retry?).to eq(false)
+      end
+    end
+
+    context 'when the attempt count is greater than the limit' do
+      it 'should return false' do
+        webhook = Webhook.new(attempt_count: 5, attempt_limit: 1)
+        expect(webhook.can_retry?).to eq(false)
+      end
+    end
+  end
 end
