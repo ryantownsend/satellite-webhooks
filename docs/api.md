@@ -40,7 +40,7 @@ Deliveries are attempted 3 times before the background queue will give up.
 * `headers` – object (key-value pairs), optional
 * `body` – string, required
 * `auth` – object (`username` / `password` keys), optional
-* `retry_limit` – integer, optional, min: 0, max: 10, default: 3
+* `attempt_limit` – integer, optional, min: 0, max: 10, default: 3
 * `timeout` – integer, optional, min: 1, max: 60, default: 5
 * `proxy` – boolean / url, optional, default: false
 * `signatures` - array of objects, optional, default: empty
@@ -67,7 +67,7 @@ Note 2: for the algorithm in `signatures`, the supported values are `hmac-sha1`,
         "username": "testuser001",
         "password": "arandompassword"
       },
-      "retry_limit": 5,
+      "attempt_limit": 5,
       "timeout": 5,
       "signatures": [
         {
