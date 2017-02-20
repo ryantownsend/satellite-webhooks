@@ -11,6 +11,8 @@ module TestModels
     property :timeout
     property :status
     property :proxy
+    property :signatures
+    property :event_source
 
     # associations
     has_many :deliveries
