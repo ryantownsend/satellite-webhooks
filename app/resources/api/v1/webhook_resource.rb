@@ -1,13 +1,13 @@
 class Api::V1::WebhookResource < JSONAPI::Resource
-  attributes :identifier, :url, :headers, :body, :auth, :retry_limit, :timeout,
-    :status, :proxy, :signatures, :event_source
+  attributes :identifier, :url, :headers, :body, :auth, :timeout,
+    :status, :proxy, :signatures, :event_source, :attempt_count, :attempt_limit
 
   # associations
   has_many :deliveries
 
   # prevent setting of status
   def self.creatable_fields(context)
-    super - [:status]
+    super - [:status, :attempt_count]
   end
 
   def auth

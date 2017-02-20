@@ -7,7 +7,8 @@ module TestModels
     property :headers
     property :body
     property :auth
-    property :retry_limit
+    property :attempt_count
+    property :attempt_limit
     property :timeout
     property :status
     property :proxy

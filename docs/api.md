@@ -31,7 +31,7 @@ Webhooks have a useful `status` attribute that will be one of the following:
 
 This endpoint allows you to submit a webhook to be queued for delivery. The endpoint is idempotent so if you submit a second webhook with the same `identifier` attribute, it will treat this as a duplicate record and return the original, without queuing a second delivery.
 
-Deliveries are attempted 3 times before the background queue will give up.
+Deliveries are attempted 3 times by default before the background queue will give up, though you can customise this by setting `attempt_limit`. You can also disable this by passing `0` as the value.
 
 ##### Attributes
 
@@ -40,7 +40,7 @@ Deliveries are attempted 3 times before the background queue will give up.
 * `headers` – object (key-value pairs), optional
 * `body` – string, required
 * `auth` – object (`username` / `password` keys), optional
-* `retry_limit` – integer, optional, min: 0, max: 10, default: 3
+* `attempt_limit` – integer, optional, min: 0, max: 10, default: 3
 * `timeout` – integer, optional, min: 1, max: 60, default: 5
 * `proxy` – boolean / url, optional, default: false
 * `signatures` - array of objects, optional, default: empty
@@ -67,7 +67,7 @@ Note 2: for the algorithm in `signatures`, the supported values are `hmac-sha1`,
         "username": "testuser001",
         "password": "arandompassword"
       },
-      "retry_limit": 5,
+      "attempt_limit": 5,
       "timeout": 5,
       "signatures": [
         {

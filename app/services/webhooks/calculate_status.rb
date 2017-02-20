@@ -7,7 +7,7 @@ module Webhooks
         'queued'
       elsif deliveries.any?(&:successful?)
         'delivered'
-      elsif deliveries.size >= webhook.retry_limit
+      elsif !webhook.can_retry?
         'failed'
       else
         'retrying'

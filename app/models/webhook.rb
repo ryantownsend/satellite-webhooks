@@ -8,7 +8,7 @@ class Webhook < ApplicationRecord
   # validation
   validates :identifier, :url, presence: true
 
-  validates :retry_limit, numericality: {
+  validates :attempt_limit, numericality: {
     greater_than_or_equal_to: 0,
     less_than_or_equal_to: 10,
     only_integer: true,
@@ -39,5 +39,9 @@ class Webhook < ApplicationRecord
     else
       super(validate: false)
     end
+  end
+
+  def can_retry?
+    attempt_count < attempt_limit
   end
 end
