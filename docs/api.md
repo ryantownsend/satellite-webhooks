@@ -44,6 +44,7 @@ Deliveries are attempted 3 times before the background queue will give up.
 * `timeout` – integer, optional, min: 1, max: 60, default: 5
 * `proxy` – boolean / url, optional, default: false
 * `signatures` - array of objects, optional, default: empty
+* `event_source` - object, optional
 
 Note: if `proxy` is set to true, it will use the system HTTP Proxy, which will be loaded from `ENV['QUOTAGUARDSTATIC_URL']`, `ENV['FIXIE_URL']` (allowing you to simply install either addon via Heroku), or `ENV['HTTP_PROXY_URL']` if you wish to use something custom.
 
@@ -74,7 +75,12 @@ Note 2: for the algorithm in `signatures`, the supported values are `hmac-sha1`,
           "shared_secret": "secret",
           "algorithm": "hmac-sha1"
         }
-      ]
+      ],
+      "event_source": {
+        "event": "object_created",
+        "object_type": "record",
+        "object_id": 123
+      }
     }
   }
 }
