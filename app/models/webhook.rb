@@ -7,6 +7,7 @@ class Webhook < ApplicationRecord
 
   # validation
   validates :identifier, :url, presence: true
+  validates :headers, :signatures, :event_source, json_schema: true
 
   validates :attempt_limit, numericality: {
     greater_than_or_equal_to: 0,
