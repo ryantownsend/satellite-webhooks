@@ -19,7 +19,9 @@ gem 'typhoeus', '>= 1.1.2', '~> 1.1'
 # Internal Pubsub
 gem 'wisper', '2.0.0.rc1'
 # JSON Validation
-gem 'json-schema', '~> 2.8', '2.8.0'
+gem 'json-schema', '~> 2.8', '>= 2.8.0'
+# Process management
+gem 'foreman', '~> 0.83', '>= 0.83'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

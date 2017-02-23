@@ -3,10 +3,11 @@ version: '2'
 services:
   web:
     build: .
-    command: ./bin/docker/rails s -b 0.0.0.0
+    command: bundle exec foreman start -f ./Procfile.dev -p 3000
     volumes:
       - .:/app
       - rubygems_cache:/rubygems
+      - yarn_cache:/app/node_modules
     ports:
       - '3000:3000'
     environment: &default_environment
@@ -50,3 +51,4 @@ services:
 volumes:
   postgres_data:
   rubygems_cache:
+  yarn_cache:

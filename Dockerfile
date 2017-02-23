@@ -1,12 +1,27 @@
 FROM ruby:2.4-slim
 LABEL maintainer "ryan@ryantownsend.co.uk"
 
-# Install basic packages
+# Install essentials and cURL
 RUN apt-get update -qq && apt-get install -y --no-install-recommends \
   build-essential \
-  curl \
+  curl
+
+# Add the NodeJS source
+RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
+
+# Add the Yarn source
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+# Install basic packages
+RUN apt-get update -qq && apt-get install -y --no-install-recommends \
   git \
-  libpq-dev
+  libpq-dev \
+  nodejs \
+  yarn
+
+# Install yarn
+RUN npm install yarn
 
 # Configure the main working directory
 ENV app /app

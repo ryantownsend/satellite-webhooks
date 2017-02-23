@@ -16,3 +16,9 @@
 
 # Ignore annoying Mac files
 **.DS_Store
+
+# Ignore Yarn
+/node_modules
+
+# Ignore built JS
+/public/bundle.js
