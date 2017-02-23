@@ -10,7 +10,7 @@ services:
       - yarn_cache:/app/node_modules
     ports:
       - '3000:3000'
-    environment: &default_environment
+    environment:
       GEM_HOME: '/rubygems'
       BUNDLE_PATH: '/rubygems'
       DATABASE_URL: 'postgres://postgres:@postgres:5432'
@@ -22,19 +22,6 @@ services:
     links:
       - postgres
       - redis
-
-  worker:
-    build: .
-    command: bundle exec sidekiq -c 4
-    volumes:
-      - .:/app
-      - rubygems_cache:/rubygems
-    environment:
-      <<: *default_environment
-    depends_on:
-      - postgres
-      - redis
-      - web
 
   postgres:
     image: postgres:9.6
