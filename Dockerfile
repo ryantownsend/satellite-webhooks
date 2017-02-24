@@ -34,6 +34,3 @@ ENV BUNDLE_PATH /rubygems
 
 # Link the whole application up
 ADD . $app
-
-# Ensure our gems are installed when running commands
-ENTRYPOINT bin/docker/entrypoint $0 $@

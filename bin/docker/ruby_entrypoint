@@ -9,16 +9,6 @@ bundle check || {
   }
 }
 
-yarn check || {
-  echo "Installing Yarn packages..."
-  {
-    yarn install >/dev/null 2>&1 && echo "Installed Yarn packages."
-  } || {
-    echo "Yarn installation failed."
-    exit 1
-  }
-}
-
 # remove any old PIDs
 rm -f "tmp/pids/*"
 

@@ -3,11 +3,10 @@ version: '2'
 services:
   web:
     build: .
-    command: bundle exec foreman start -f ./Procfile.dev -p 3000
+    command: ./bin/docker/ruby_entrypoint bundle exec foreman start -f ./Procfile.dev -p 3000
     volumes:
       - .:/app
       - rubygems_cache:/rubygems
-      - yarn_cache:/app/node_modules
     ports:
       - '3000:3000'
     environment:
@@ -22,6 +21,13 @@ services:
     links:
       - postgres
       - redis
+
+  yarn:
+    build: .
+    command: ./bin/docker/yarn_entrypoint yarn run webpack --watch
+    volumes:
+      - .:/app
+      - yarn_cache:/app/node_modules
 
   postgres:
     image: postgres:9.6
