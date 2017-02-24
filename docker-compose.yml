@@ -3,7 +3,8 @@ version: '2'
 services:
   web:
     build: .
-    command: ./bin/docker/ruby_entrypoint bundle exec foreman start -f ./Procfile.dev -p 3000
+    command: bundle exec foreman start -f ./Procfile.dev -p 3000
+    entrypoint: ./bin/docker/ruby_entrypoint
     volumes:
       - .:/app
       - rubygems_cache:/rubygems
@@ -24,7 +25,8 @@ services:
 
   yarn:
     build: .
-    command: ./bin/docker/yarn_entrypoint yarn run webpack --watch
+    command: yarn run webpack --watch
+    entrypoint: ./bin/docker/yarn_entrypoint
     volumes:
       - .:/app
       - yarn_cache:/app/node_modules

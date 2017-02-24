@@ -34,3 +34,6 @@ ENV BUNDLE_PATH /rubygems
 
 # Link the whole application up
 ADD . $app
+
+# Ensure our Ruby gems / Yarn packages are installed when running commands
+ENTRYPOINT ./bin/docker/ruby_entrypoint ./bin/docker/yarn_entrypoint $0 $@
