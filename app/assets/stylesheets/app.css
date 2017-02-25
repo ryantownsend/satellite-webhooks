@@ -46,22 +46,6 @@ th, td {
   vertical-align: middle;
 }
 
-.o-container {
-  max-width: 1080px;
-  margin-top: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
-.o-row {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .c-search-form {
   padding-left: 30px;
   padding-right: 30px;
@@ -87,38 +71,6 @@ th, td {
   border: 1px solid #e6eaee;
   border-radius: 5px;
 }
-
-.c-data-table {}
-  .c-data-table__row {
-    border-top: 1px solid #e6eaee;
-  }
-  .c-data-table__cell {
-    padding: 15px 7.5px 15px 7.5px;
-  }
-    .c-data-table__cell:first-child {
-      padding-left: 30px;
-    }
-    .c-data-table__cell:last-child {
-      padding-right: 30px;
-    }
-  .c-data-table__cell--header {
-    padding-top: 7.5px;
-    padding-bottom: 7.5px;
-    background-color: #F5F8FA;
-    border-top: 1px solid #e6eaee;
-    border-bottom: 1px solid #e6eaee;
-    color: #7f8fa4;
-    font-size: 0.9rem;
-  }
-  .c-data-table__title {
-    font-weight: 500;
-  }
-  .c-data-table__primary {}
-  .c-data-table__tertiary {
-    margin-top: 3px;
-    display: inline-block;
-    color: #BBC5D5;
-  }
 
 .c-navbar {
   padding-left: 15px;
@@ -168,7 +120,7 @@ th, td {
   flex-wrap: wrap;
 }
   .c-tabs__tab {
-    padding: 30px;
+    padding: 15px 30px;
     font-size: 1.5rem;
     font-weight: 300;
     color: #354052;
@@ -179,12 +131,12 @@ th, td {
     background-color: #e6eaee;
     content: ' ';
     position: absolute;
-    top: 30px;
+    top: 15px;
     right: 100%;
-    bottom: 30px;
+    bottom: 15px;
   }
   .c-tabs__tab--active {
-    padding-bottom: 28px;
+    padding-bottom: 13px;
     border-bottom: 2px solid #00aeef;
   }
 

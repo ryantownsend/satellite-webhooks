@@ -20,5 +20,6 @@
 # Ignore Yarn
 /node_modules
 
-# Ignore built JS
-/public/bundle.js
+# Ignore F/E build directory
+/public
+!/public/index.html

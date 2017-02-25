@@ -1,0 +1,31 @@
+.c-data-table {}
+  .c-data-table__row {
+    border-top: 1px solid #e6eaee;
+  }
+  .c-data-table__cell {
+    padding: 15px 7.5px 15px 7.5px;
+  }
+    .c-data-table__cell:first-child {
+      padding-left: 30px;
+    }
+    .c-data-table__cell:last-child {
+      padding-right: 30px;
+    }
+  .c-data-table__cell--header {
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
+    background-color: #F5F8FA;
+    border-top: 1px solid #e6eaee;
+    border-bottom: 1px solid #e6eaee;
+    color: #7f8fa4;
+    font-size: 0.9rem;
+  }
+  .c-data-table__title {
+    font-weight: 500;
+  }
+  .c-data-table__primary {}
+  .c-data-table__tertiary {
+    margin-top: 3px;
+    display: inline-block;
+    color: #BBC5D5;
+  }
