@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchWebhooks } from '../actions'
+import { readEndpoint } from 'redux-json-api'
+import { purgeState } from '../actions'
 
 import '../../stylesheets/components/c-data-table.css'
 
@@ -8,14 +9,13 @@ import Container from '../components/Container'
 import Row from '../components/Row'
 import WebhookTableRow from '../components/WebhookTableRow'
 
-class WebhookIndex extends React.Component {
+class WebhookIndexView extends React.Component {
   componentDidMount() {
-    this.props.dispatch(fetchWebhooks())
+    this.props.dispatch(purgeState())
+    this.props.dispatch(readEndpoint('webhooks?sort=-created_at'))
   }
 
   render() {
-    let { webhooks } = this.props
-
     return <Container>
       <div className='c-box'>
         <Row>
@@ -53,8 +53,8 @@ class WebhookIndex extends React.Component {
           </thead>
 
           <tbody>
-            {(webhooks || []).map((webhook, i) =>
-              <WebhookTableRow webhook={webhook} key={i} />
+            {this.props.webhooks.data.map((webhook) =>
+              <WebhookTableRow webhook={webhook} key={webhook.id} />
             )}
           </tbody>
         </table>
@@ -63,6 +63,9 @@ class WebhookIndex extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ webhooks: state.webhooks.webhooks })
+const mapStateToProps = (state) => {
+  const webhooks = state.api.webhooks || { data: [] }
+  return { webhooks }
+}
 
-export default connect(mapStateToProps)(WebhookIndex)
+export default connect(mapStateToProps)(WebhookIndexView)

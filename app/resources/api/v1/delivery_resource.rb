@@ -3,7 +3,8 @@ class Api::V1::DeliveryResource < JSONAPI::Resource
   immutable
 
   attributes :status, :response_time_ms, :response_status_code,
-    :response_headers, :response_body
+    :response_headers, :response_body,
+    :created_at, :updated_at
 
   # associations
   belongs_to :webhook

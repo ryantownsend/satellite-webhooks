@@ -25,6 +25,10 @@ h1, h2, h3, p, li, table, th, td, small, input, textarea {
   font-size: inherit;
   font-weight: normal;
 }
+
+h1 { font-size: 1.5rem }
+h2 { font-size: 1.25rem }
+
 small {
   font-size: 0.85rem;
 }
@@ -44,6 +48,11 @@ table, tr, th, td {
 }
 th, td {
   vertical-align: middle;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid #E6EAEE;
 }
 
 .c-search-form {

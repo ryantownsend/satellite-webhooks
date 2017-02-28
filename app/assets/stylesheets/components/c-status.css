@@ -1,0 +1,20 @@
+.c-status {
+  display: inline-block;
+  background-color: #68768C;
+  padding: 5px 8px;
+  border-radius: 3px;
+}
+  .c-status--queued {
+    background-color: #00AEEF;
+    color: #fff;
+  }
+  .c-status--delivered {
+    background-color: #74C7A8;
+    color: #fff;
+  }
+  .c-status--failed {
+    background-color: #FFA2AD;
+  }
+  .c-status--retrying {
+    background-color: #FECF39;
+  }

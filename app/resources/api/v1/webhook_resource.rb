@@ -1,6 +1,7 @@
 class Api::V1::WebhookResource < JSONAPI::Resource
   attributes :identifier, :url, :headers, :body, :auth, :timeout,
-    :status, :proxy, :signatures, :event_source, :attempt_count, :attempt_limit
+    :status, :proxy, :signatures, :event_source, :attempt_count, :attempt_limit,
+    :created_at, :updated_at
 
   # associations
   has_many :deliveries
