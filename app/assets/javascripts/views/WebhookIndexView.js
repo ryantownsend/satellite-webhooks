@@ -12,7 +12,7 @@ import WebhookTableRow from '../components/WebhookTableRow'
 class WebhookIndexView extends React.Component {
   componentDidMount() {
     this.props.dispatch(purgeState())
-    this.props.dispatch(readEndpoint('webhooks?sort=-created_at'))
+    this.props.dispatch(readEndpoint('webhooks?fields[webhooks]=url,event_source,created_at&sort=-created_at'))
   }
 
   render() {

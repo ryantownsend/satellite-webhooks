@@ -15,7 +15,7 @@ class WebhookDetailView extends React.Component {
   componentDidMount() {
     let webhookId = this.props.match.params.id
     this.props.dispatch(purgeState())
-    this.props.dispatch(readEndpoint(`webhooks/${webhookId}?include=deliveries&fields[deliveries]=status,created_at`))
+    this.props.dispatch(readEndpoint(`webhooks/${webhookId}?include=deliveries&fields[webhooks]=url,status&fields[deliveries]=status,created_at`))
   }
 
   render() {
